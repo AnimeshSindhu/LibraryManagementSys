@@ -73,3 +73,20 @@ class User(AbstractBaseUser):
         # Simplest possible answer: All admins are staff
         return self.is_admin
 
+
+class Books(models.Model):
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=255)
+    author = models.CharField(max_length=255)
+    isbn = models.CharField(max_length=13, unique=True)
+    publisher = models.CharField(max_length=255)
+    publication_date = models.DateField()
+    genre = models.CharField(max_length=100)
+    language = models.CharField(max_length=100)
+    pages = models.IntegerField()
+    cover_image_url = models.URLField(max_length=255, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    quantity_in_stock = models.IntegerField()
+
+

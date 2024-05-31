@@ -1,10 +1,29 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from Library.models import User
+from Library.models import User, Books
 
 
-# Register your models here.
+@admin.register(Books)
+class BooksAdmin(admin.ModelAdmin):
+    list_display = [
+        'id',
+        'title',
+        'author',
+        'isbn',
+        'publisher',
+        'publication_date',
+        'genre',
+        'language',
+        'pages',
+        'price',
+        'quantity_in_stock'
+    ]
+    search_fields = ['title', 'author', 'isbn', 'publisher', 'genre', 'language']
+    list_filter = ['genre', 'language', 'publication_date']
+    ordering = ['id']
+
+
 class UserModelAdmin(BaseUserAdmin):
     list_display = ["id", "email", "name", "role", "is_admin"]
     list_filter = ["is_admin"]

@@ -1,5 +1,17 @@
 from rest_framework import serializers
-from .models import User
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+from .models import User, Books
+
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user: User):
+        token = super().get_token(user)
+        token['name'] = user.name
+        token['email'] = user.email
+        token['role'] = user.role
+        return token
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
@@ -29,3 +41,23 @@ class UserLoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['email', 'password']
+
+
+class BooksSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Books
+        fields = [
+            'id',
+            'title',
+            'author',
+            'isbn',
+            'publisher',
+            'publication_date',
+            'genre',
+            'language',
+            'pages',
+            'cover_image_url',
+            'description',
+            'price',
+            'quantity_in_stock'
+        ]
