@@ -31,15 +31,15 @@ Run the Server:
 ```bash
 python manage.py runserver
 ```
-Usage:
+Usage
 Access the application at `http://127.0.0.1:8000/`.
 Use the Django admin at `http://127.0.0.1:8000/admin/` to manage the library database.
 
-Project Structure:
+Project Structure
 LibraryManagementSys/: Main project directory.
 Library/: Django app for library management.
 db.sqlite3: SQLite database file.
 manage.py: Django management script.
 
-Contributing:
+Contributing
 Contributions are welcome! Please fork the repository and submit a pull request.
